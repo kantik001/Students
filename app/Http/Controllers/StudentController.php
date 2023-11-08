@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Student\StoreRequest;
 use App\Http\Resources\Student\StudentResource;
+use App\Mapper\StudentMapper;
+use App\Models\Age;
 use App\Models\Student;
 use App\Services\StudentService;
 use Illuminate\Http\Request;
@@ -15,6 +17,8 @@ class StudentController extends Controller
         $data = $request->validated();
 
         $student = StudentService::store($data);
+
+        $student = StudentMapper::storeMap($student);
 
         $student = StudentResource::make($student)->resolve();
 
@@ -37,8 +41,10 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = Student::all();
-        dd($students);
+        $student = Student::first();
+
+        dd($student->teachers);
+
 
     }
 
