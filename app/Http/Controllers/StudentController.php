@@ -2,20 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Student\StoreRequest;
+use App\Http\Resources\Student\StudentResource;
 use App\Models\Student;
+use App\Services\StudentService;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function store()
+    public function store(StoreRequest $request)
     {
-        $str = 'Boris';
+        $data = $request->validated();
 
-        Student::create([
-            'name' => $str
-        ]);
+        $student = StudentService::store($data);
+
+        $student = StudentResource::make($student)->resolve();
+
+        dd($student);
 
        return 'Created';
+    }
+
+    public function create()
+    {
+        return view('student.create');
+
+    }
+
+    public function edit()
+    {
+
 
     }
 
@@ -48,7 +64,7 @@ class StudentController extends Controller
 
     }
 
-    public function delete()
+    public function destroy()
     {
         $id = 1;
         $student = Student::find($id);
