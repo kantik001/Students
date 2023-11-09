@@ -7,6 +7,7 @@ use App\Http\Resources\Student\StudentResource;
 use App\Mapper\StudentMapper;
 use App\Models\Age;
 use App\Models\Student;
+use App\Models\Teacher;
 use App\Services\StudentService;
 use Illuminate\Http\Request;
 
@@ -41,11 +42,13 @@ class StudentController extends Controller
 
     public function index()
     {
-        $student = Student::first();
+       $teacher = Teacher::first();
 
-        dd($student->teachers);
+       $student = Student::find(1);
 
+       $teacher->students()->attach($student->id);
 
+       dd($teacher->students);
     }
 
     public function show()
