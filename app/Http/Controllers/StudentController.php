@@ -46,7 +46,7 @@ class StudentController extends Controller
 
        $student = Student::find(1);
 
-       $teacher->students()->attach($student->id);
+       $teacher->students()->syncWithoutDetaching($student->id);
 
        dd($teacher->students);
     }
