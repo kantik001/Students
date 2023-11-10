@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-            AgeSeeder::class
+
         ]);
         // \App\Models\User::factory(10)->create();
 
