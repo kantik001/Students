@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Age extends Model
+class Surname extends Model
 {
     use HasFactory;
 
@@ -13,8 +13,6 @@ class Age extends Model
 
     public function students()
     {
-        return $this->hasMany(Age::class);
+        return $this->hasMany(Student::class);
     }
-
-
 }

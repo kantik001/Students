@@ -16,9 +16,9 @@ class Student extends Model
         return $this->hasOne(Diary::class);
     }
 
-    public function age()
+    public function surname()
     {
-        return $this->belongsTo(Age::class);
+        return $this->belongsTo(Surname::class);
     }
 
     public function teachers()
