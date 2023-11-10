@@ -17,7 +17,7 @@ class AgeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'age' => fake()->text
         ];
     }
 }
