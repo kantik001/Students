@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('age');
             $table->string('city');
+            $table->foreignId('surname_id')->index()->constrained('surnames');
             $table->timestamps();
         });
     }

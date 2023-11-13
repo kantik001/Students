@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Student\StoreRequest;
 use App\Http\Resources\Student\StudentResource;
 use App\Mapper\StudentMapper;
@@ -17,36 +18,27 @@ class StudentController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-
         $student = StudentService::store($data);
-
         $student = StudentMapper::storeMap($student);
-
         $student = StudentResource::make($student)->resolve();
         $students = Student::all();
         $students = StudentResource::collection($students)->resolve();
-
         return 'Created';
     }
 
     public function create()
     {
         return view('student.create');
-
     }
 
     public function edit()
     {
-
-
     }
 
     public function index()
     {
-
        $student = Student::all();
        return StudentResource::collection($student)->resolve();
-
     }
 
     public function show()
@@ -54,7 +46,6 @@ class StudentController extends Controller
         $id = 1;
         $student = Student::find($id);
         dd($student);
-
     }
 
     public function update()
@@ -68,19 +59,14 @@ class StudentController extends Controller
         ]);
 
         return 'updated';
-
     }
 
     public function destroy()
     {
         $id = 1;
         $student = Student::find($id);
-
         $student->delete();
-
         return 'deleted';
-
     }
-
 
 }
