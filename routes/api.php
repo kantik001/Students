@@ -24,4 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('students', \App\Http\Controllers\Api\StudentController::class);
+Route::apiResource('students', \App\Http\Controllers\Api\StudentController::class)->middleware('jwt.auth');
+
+Route::post('/student/{student}/teachers', [\App\Http\Controllers\Api\StudentController::class, 'storeStudentTeacher']);

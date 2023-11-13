@@ -26,7 +26,7 @@ class StudentController extends Controller
         return 'Created';
     }
 
-    public function create()
+    public function create(Student $student)
     {
         return view('student.create');
     }
@@ -35,20 +35,20 @@ class StudentController extends Controller
     {
     }
 
-    public function index()
+    public function index(Student $student)
     {
        $student = Student::all();
        return StudentResource::collection($student)->resolve();
     }
 
-    public function show()
+    public function show(Student $student)
     {
         $id = 1;
         $student = Student::find($id);
         dd($student);
     }
 
-    public function update()
+    public function update(Student $student)
     {
         $id = 1;
         $student = Student::find($id);
@@ -61,7 +61,7 @@ class StudentController extends Controller
         return 'updated';
     }
 
-    public function destroy()
+    public function destroy(Student $student)
     {
         $id = 1;
         $student = Student::find($id);
