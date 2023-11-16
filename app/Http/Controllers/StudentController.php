@@ -59,15 +59,6 @@ class StudentController extends Controller
 
     public function update()
     {
-        $id = 1;
-        $student = Student::find($id);
-        $anotherStudent = 'Ruslan';
-
-        $student->update([
-            'name' => $anotherStudent
-        ]);
-
-        return 'updated';
 
     }
 

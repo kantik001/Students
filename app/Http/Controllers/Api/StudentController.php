@@ -18,6 +18,7 @@ class StudentController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
+        //dd($data);
         $student = StudentService::store($data);
         $student = StudentMapper::storeMap($student);
         $student = StudentResource::make($student)->resolve();
@@ -43,14 +44,14 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
-        $id = 1;
-        $student = Student::find($id);
+
+        $student = Student::find(1);
         dd($student);
     }
 
     public function update(Student $student)
     {
-        $id = 1;
+        $id = 2;
         $student = Student::find($id);
         $anotherStudent = 'Ruslan';
 
