@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\StudentFilter;
+use App\Http\Requests\Api\IndexRequest;
 use App\Http\Requests\Student\StoreRequest;
 use App\Http\Resources\Student\StudentResource;
 use App\Mapper\StudentMapper;
@@ -36,10 +38,19 @@ class StudentController extends Controller
     {
     }
 
-    public function index(Student $student)
+    public function index(IndexRequest $request)
     {
-       $student = Student::all();
-       return StudentResource::collection($student)->resolve();
+        $data = $request->validated();
+        $page = $data['page'] ?? 1;
+        $perPage = $data['per_page'] ?? 25;
+
+        $filter = app()->make(StudentFilter::class, ['queryParams' => array_filter($data)]);
+
+        $students = Student::filter($filter)->paginate($perPage, ['*'], 'page', $page);
+
+        $students = StudentResource::collection($students)->resolve();
+        return $students;
+
     }
 
     public function show(Student $student)
