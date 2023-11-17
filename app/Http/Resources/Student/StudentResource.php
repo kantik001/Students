@@ -17,7 +17,12 @@ class StudentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'new_attr' => $this->new_attr
+            'age' => $this->age,
+            'surname_id' => $this->surname_id,
+            'country' => $this->country,
+            'city' => $this->city,
+            'is_married' => $this->is_married
+
         ];
     }
 }
