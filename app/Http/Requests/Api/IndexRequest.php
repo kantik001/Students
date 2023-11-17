@@ -30,6 +30,9 @@ class IndexRequest extends FormRequest
             'country' => 'nullable|string',
             'is_married' => 'nullable|boolean',
             'surname_id' => 'nullable|integer|exists:surnames,id',
+            'page' => 'nullable|integer',
+            'per_page' => 'nullable|integer',
+
 
         ];
     }
