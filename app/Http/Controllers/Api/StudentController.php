@@ -42,7 +42,7 @@ class StudentController extends Controller
     {
         $data = $request->validated();
         $page = $data['page'] ?? 1;
-        $perPage = $data['per_page'] ?? 25;
+        $perPage = $data['per_page'] ?? 3;
 
         $filter = app()->make(StudentFilter::class, ['queryParams' => array_filter($data)]);
 
