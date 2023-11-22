@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\Student\StoredStudentEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Filters\StudentFilter;
 use App\Http\Requests\Api\IndexRequest;
 use App\Http\Requests\Student\StoreRequest;
 use App\Http\Resources\Student\StudentResource;
+use App\Jobs\Student\StoreJob;
 use App\Mapper\StudentMapper;
 use App\Models\Surname;
 use App\Models\Diary;
@@ -20,13 +22,22 @@ class StudentController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
+
+        $student = Student::create($data);
+
+        StoredStudentEvent::dispatch($student);
+
+
+
+        //StoreJob::dispatchSync();
+
         //dd($data);
-        $student = StudentService::store($data);
-        $student = StudentMapper::storeMap($student);
-        $student = StudentResource::make($student)->resolve();
-        $students = Student::all();
-        $students = StudentResource::collection($students)->resolve();
-        return 'Created';
+        //$student = StudentService::store($data);
+        //$student = StudentMapper::storeMap($student);
+        //$student = StudentResource::make($student)->resolve();
+        //$students = Student::all();
+        //$students = StudentResource::collection($students)->resolve();
+        //return 'Created';
     }
 
     public function create(Student $student)

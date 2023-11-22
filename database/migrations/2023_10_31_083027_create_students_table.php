@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('age');
-            $table->string('city');
-            $table->string('country');
-            $table->boolean('is_married');
-            //$table->foreignId('surname_id')->index()->constrained('surnames');
+            //$table->integer('age');
+            //$table->string('city');
+            $table->integer('performance_rating');
+            //$table->string('country');
+            //$table->boolean('is_married');
+
             $table->timestamps();
         });
     }

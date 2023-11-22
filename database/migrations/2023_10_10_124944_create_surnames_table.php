@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('surnames', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->integer('total_rating')->nullable();
             $table->timestamps();
         });
     }
