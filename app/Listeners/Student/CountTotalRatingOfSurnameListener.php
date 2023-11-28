@@ -7,7 +7,7 @@ use App\Models\Surname;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class CountTotalRatingOfSurnameListener
+class CountTotalRatingOfSurnameListener implements ShouldQueue
 {
     /**
      * Create the event listener.
