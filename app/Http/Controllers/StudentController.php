@@ -19,7 +19,7 @@ class StudentController extends Controller
     {
 
         $data = $request->validated();
-        dd($data);
+        //dd($data);
         Student::create($data);
         return redirect()->route('students.index');
 
@@ -41,8 +41,8 @@ class StudentController extends Controller
 
     public function edit(Student $student)
     {
-
-
+        $student = StudentResource::make($student)->resolve();
+        return inertia('Student/Edit', compact('student'));
     }
 
     public function index()
@@ -59,25 +59,27 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
-        $id = 1;
-        $student = Student::find($id);
-        dd($student);
+        $student = StudentResource::make($student)->resolve();
+        return inertia('Student/Show', compact('student'));
 
     }
 
     public function update(UpdateRequest $request, Student $student)
     {
+        $data = $request->validated();
+        $student->update($data);
+        return redirect()->route('students.index');
+
 
     }
 
     public function destroy(Student $student)
     {
-        $id = 1;
-        $student = Student::find($id);
-
         $student->delete();
+        return response()->json([
+            'message' => 'deleted'
+        ]);
 
-        return 'deleted';
 
     }
 

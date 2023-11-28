@@ -5,7 +5,7 @@
             <Link :href="route('students.create')" class="inline-block bg-sky-600 px-3 py-2 text-white">Добавить</Link>
 
         </div>
-        <div class="mb-4" v-for="car in pageCars">
+        <div class="mb-4" v-for="student in pageCars">
             <div>{{ student.name }}</div>
             <div >{{ student.performance_rating }}</div>
             <div class="mb-6">{{ student.id }}</div>
@@ -16,7 +16,7 @@
                 <Link :href="route('students.edit', student.id)" class="inline-block bg-green-600 px-3 py-2 text-white">Редактировать</Link>
             </div>
             <div class="mb-6">
-                <a @click.prevent="destroy(car.id)" href="#" class="inline-block bg-rose-600 px-3 py-2 text-white">Удалить</a>
+                <a @click.prevent="destroy(student.id)" href="#" class="inline-block bg-rose-600 px-3 py-2 text-white">Удалить</a>
             </div>
             <hr class="mt-4">
         </div>
@@ -32,7 +32,7 @@ export default {
     props: ['students'],
     data() {
         return {
-            pageCars: this.students
+            pageStudents: this.students
         }
     },
     components: { Link },
@@ -42,7 +42,7 @@ export default {
     methods: {
         destroy(id) {
             axios.delete(`/students/${id}`).then( res => {
-                this.pageCars = this.pageCars.filter(student => {
+                this.pageStudents = this.pageStudents.filter(student => {
                     return parseInt(student.id) !== parseInt(id)
                 })
             }).catch(res => {
