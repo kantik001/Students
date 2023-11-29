@@ -19,7 +19,7 @@ class StudentController extends Controller
     {
 
         $data = $request->validated();
-        //dd($data);
+        dd($data);
         Student::create($data);
         return redirect()->route('students.index');
 

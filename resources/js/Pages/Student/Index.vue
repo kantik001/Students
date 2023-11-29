@@ -5,7 +5,7 @@
             <Link :href="route('students.create')" class="inline-block bg-sky-600 px-3 py-2 text-white">Добавить</Link>
 
         </div>
-        <div class="mb-4" v-for="student in pageCars">
+        <div class="mb-4" v-for="student in pageStudents">
             <div>{{ student.name }}</div>
             <div >{{ student.performance_rating }}</div>
             <div class="mb-6">{{ student.id }}</div>
